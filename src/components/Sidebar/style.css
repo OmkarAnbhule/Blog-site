@@ -1,0 +1,175 @@
+.sidebar-root {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    flex-direction: column;
+    row-gap: 50px;
+
+    .input-search {
+        width: 100%;
+        height: max-content;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        input {
+            width: 100%;
+            height: 30px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            border: 2px solid #ccc;
+            outline: black;
+            padding: 20px;
+            padding-right: 30px;
+        }
+
+        svg {
+            position: absolute;
+            right: 5px;
+        }
+    }
+
+    .popular-posts {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 300px;
+        flex-direction: column;
+
+        h1 {
+            text-align: start;
+            width: 100%;
+            font-size: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 530;
+            color: rgb(72, 71, 71);
+            font-weight: 550;
+            margin-bottom: 10px;
+        }
+
+        .caraousel {
+            width: 100%;
+            height: 100%;
+            overflow: scroll;
+            display: flex;
+            scroll-snap-type: x mandatory;
+            flex-wrap: wrap;
+            flex-direction: column;
+
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+            .blog {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                scroll-snap-align: center;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+
+                .title {
+                    position: absolute;
+                    bottom: 0;
+                    width: 100%;
+                    height: max-content;
+                    padding: 10px 70px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: start;
+                    flex-flow: column wrap;
+                    background-color: rgba(0, 0, 0, .53);
+                    color: white;
+
+                    p {
+                        &:nth-child(1) {
+                            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                            font-weight: bolder;
+                        }
+
+                        &:nth-child(2) {
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            display: -webkit-box;
+                            -webkit-line-clamp: 3;
+                            -webkit-box-orient: vertical;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+    .recent-posts {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        flex-flow: row wrap;
+
+        @media (max-width:768px) {
+            justify-content: flex-start;
+        }
+
+        h1 {
+            text-align: start;
+            width: 100%;
+            font-size: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 550;
+            margin-bottom: 10px;
+            color: rgb(72, 71, 71);
+        }
+
+        .post {
+            width: 100%;
+            display: flex;
+            padding: 14px 0px;
+            column-gap: 20px;
+
+            &:hover{
+                background: rgba(0,0,0,0.09);
+            }
+
+            @media (max-width:786px) {
+                width: 50%;
+            }
+
+            @media (max-width:464px) {
+                width: 100%;
+            }
+
+            img {
+                width: 80px;
+                height: 50px;
+            }
+
+            p {
+                &:last-child {
+                    font-size: small;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}
