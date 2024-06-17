@@ -6,8 +6,9 @@ const { generateOrQuery, traverseObjects } = require('../utils/comment.utils.cjs
 
 exports.createBlog = async (req, resp) => {
     try {
-        const { title, category, content, desc } = req.body
+        const { title, category, desc } = req.body
         const thumbnail = req.files.thumbnail
+        const content = DOMPurifyInstance.sanitize(req.body.content);
         if (title || category || content || thumbnail || desc) {
             const upload = await uploadFileOnCloudinary(thumbnail, 'blogThumbnails')
             const result = await Blog.create({ title, category, content, thumbnail: upload.secure_url, author: req.user.id, desc: desc })
