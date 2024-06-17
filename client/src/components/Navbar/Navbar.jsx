@@ -9,15 +9,15 @@ export default function Navbar() {
     const api = import.meta.env.VITE_API_URL;
     const navigate = useNavigate()
     const location = useLocation()
-    let token = null
+    const [token, setToken] = useState(null)
     const [isOpen, setIsOpen] = useState(false);
     const [user, setUser] = useState(null)
     const handleNavigate = (path) => {
         navigate(path)
     }
 
-    const getUser = async () => {
-        let result = await fetch(`${api}user/${token.id}`, {
+    const getUser = async (id) => {
+        let result = await fetch(`${api}user/${id}`, {
             method: 'GET',
             credentials: 'include',
             headers: {
@@ -26,25 +26,22 @@ export default function Navbar() {
             }
         })
         result = await result.json()
-        if (result.success) {
-            return result
-        }
-        return null
+        return result
     }
 
     useEffect(() => {
         if (localStorage.getItem('isLogin')) {
+            const decodedToken = jwtDecode(localStorage.getItem('token'))
+            setToken(decodedToken)
             setTimeout(() => {
-                getUser().then((res) => {
-                    if (res.success) {
-                        setUser(res.data)
-                    }
-                })
-            }, 1000)
-            token = jwtDecode(localStorage.getItem('token'))
+                    getUser(decodedToken.id).then((res) => {
+                        if (res.success) {
+                            setUser(res.data)
+                        }
+                    })
+            }, 2000)
         }
-    }, [localStorage.getItem('token')])
-
+    }, [])
     const encodeObjectId = (objectId) => {
         const buffer = Buffer.from(objectId.toString(16), 'hex');
         return buffer.toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');

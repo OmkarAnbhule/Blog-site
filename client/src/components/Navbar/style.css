@@ -170,9 +170,12 @@
                 p {
                     font-size: large;
                     font-weight: 400;
-                    text-overflow: ellipsis;
-                    overflow: hidden;
                     white-space: nowrap;
+                    width: 100%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: flex;
+                    justify-content: center;
 
                     @media (max-width: 425px) {
                         display: none;
@@ -285,13 +288,14 @@
 
             &.active {
                 color: #646cff;
+
                 @media (max-width:768px) {
                     &::before {
                         opacity: 1;
                         right: -3px;
                     }
-    
-                    &::after{
+
+                    &::after {
                         opacity: 1;
                         left: -4px;
                     }
