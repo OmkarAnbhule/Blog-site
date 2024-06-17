@@ -105,8 +105,11 @@ exports.sendOtp = async (req, resp) => {
         }
         const otpBody = await OTP.create({ email, otp });
         if (otpBody) {
-            await sendVerificationEmail(email, otp);
-            resp.status(201).send({ success: true, message: 'otp sent successfully' });
+            const response = await sendVerificationEmail(email, otp);
+            if (response)
+                resp.status(201).send({ success: true, message: 'otp sent successfully' });
+            else
+                resp.status(400).send({ success: false, message: 'otp failed to send' });
         }
     }
     catch (e) {

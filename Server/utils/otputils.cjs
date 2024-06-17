@@ -9,7 +9,12 @@ exports.sendVerificationEmail = async (email, otp) => {
             `<h1>Please confirm your OTP</h1>
          <p>Here is your OTP code: ${otp}</p>`
         );
-        console.log("Email sent successfully: ", mailResponse);
+        if (mailResponse.success) {
+            console.log("Email sent successfully: ", mailResponse.messageId);
+        } else {
+            console.log("Error occurred while sending email: ", mailResponse.error);
+            throw new Error(mailResponse.error);
+        }
     } catch (error) {
         console.log("Error occurred while sending email: ", error);
         throw error;

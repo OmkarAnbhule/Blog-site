@@ -17,9 +17,15 @@ const mailSender = async (email, title, body) => {
       subject: title,
       html: body,
     });
-    return info;
+    return {
+      success: true,
+      messageId: info.messageId
+    };
   } catch (error) {
-    console.log(error.message);
+    return {
+      success: false,
+      error: error.message
+    };
   }
 };
 module.exports = mailSender;

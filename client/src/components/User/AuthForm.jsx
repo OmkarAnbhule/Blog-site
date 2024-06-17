@@ -148,31 +148,56 @@ const AuthForm = ({ login }) => {
                                 ],
                             }
                         });
-
                     }
                     else {
-                        new Snackbar(`<i class="bi bi-exclamation-circle-fill"></i>&nbsp;&nbsp;&nbsp;Server Error`, {
-                            position: 'top-center',
-                            style: {
-                                container: [
-                                    ['background', 'rgb(246, 58, 93)'],
-                                    ['border-radius', '5px'],
-                                    ['height', '50px'],
-                                    ['padding', '10px'],
-                                    ['border-radius', '20px']
-                                ],
-                                message: [
-                                    ['color', '#eee'],
-                                    ['font-size', '18px']
-                                ],
-                                bold: [
-                                    ['font-weight', 'bold'],
-                                ],
-                                actionButton: [
-                                    ['color', 'white'],
-                                ],
-                            }
-                        })
+                        if (res.message == 'otp failed to send') {
+                            new Snackbar(`<i class="bi bi-exclamation-circle-fill"></i>&nbsp;&nbsp;&nbsp;Email Address not found`, {
+                                position: 'top-center',
+                                style: {
+                                    container: [
+                                        ['background', 'rgb(246, 58, 93)'],
+                                        ['border-radius', '5px'],
+                                        ['height', '50px'],
+                                        ['padding', '10px'],
+                                        ['border-radius', '20px']
+                                    ],
+                                    message: [
+                                        ['color', '#eee'],
+                                        ['font-size', '18px']
+                                    ],
+                                    bold: [
+                                        ['font-weight', 'bold'],
+                                    ],
+                                    actionButton: [
+                                        ['color', 'white'],
+                                    ],
+                                }
+                            })
+                        }
+                        else {
+                            new Snackbar(`<i class="bi bi-exclamation-circle-fill"></i>&nbsp;&nbsp;&nbsp;Server Error`, {
+                                position: 'top-center',
+                                style: {
+                                    container: [
+                                        ['background', 'rgb(246, 58, 93)'],
+                                        ['border-radius', '5px'],
+                                        ['height', '50px'],
+                                        ['padding', '10px'],
+                                        ['border-radius', '20px']
+                                    ],
+                                    message: [
+                                        ['color', '#eee'],
+                                        ['font-size', '18px']
+                                    ],
+                                    bold: [
+                                        ['font-weight', 'bold'],
+                                    ],
+                                    actionButton: [
+                                        ['color', 'white'],
+                                    ],
+                                }
+                            })
+                        }
                     }
                 })
             }
@@ -233,29 +258,54 @@ const AuthForm = ({ login }) => {
                 })
             }
             else {
-                setFocus(true)
-                new Snackbar(`<i class="bi bi-exclamation-circle-fill"></i>&nbsp;&nbsp;&nbsp;Please Fill in all fields`, {
-                    position: 'top-center',
-                    style: {
-                        container: [
-                            ['background', 'rgb(246, 58, 93)'],
-                            ['border-radius', '5px'],
-                            ['height', '50px'],
-                            ['padding', '10px'],
-                            ['border-radius', '20px']
-                        ],
-                        message: [
-                            ['color', '#eee'],
-                            ['font-size', '18px']
-                        ],
-                        bold: [
-                            ['font-weight', 'bold'],
-                        ],
-                        actionButton: [
-                            ['color', 'white'],
-                        ],
-                    }
-                })
+                if (res.message == 'otp failed to send') {
+                    new Snackbar(`<i class="bi bi-exclamation-circle-fill"></i>&nbsp;&nbsp;&nbsp;Email Address not found`, {
+                        position: 'top-center',
+                        style: {
+                            container: [
+                                ['background', 'rgb(246, 58, 93)'],
+                                ['border-radius', '5px'],
+                                ['height', '50px'],
+                                ['padding', '10px'],
+                                ['border-radius', '20px']
+                            ],
+                            message: [
+                                ['color', '#eee'],
+                                ['font-size', '18px']
+                            ],
+                            bold: [
+                                ['font-weight', 'bold'],
+                            ],
+                            actionButton: [
+                                ['color', 'white'],
+                            ],
+                        }
+                    })
+                }
+                else {
+                    new Snackbar(`<i class="bi bi-exclamation-circle-fill"></i>&nbsp;&nbsp;&nbsp;Server Error`, {
+                        position: 'top-center',
+                        style: {
+                            container: [
+                                ['background', 'rgb(246, 58, 93)'],
+                                ['border-radius', '5px'],
+                                ['height', '50px'],
+                                ['padding', '10px'],
+                                ['border-radius', '20px']
+                            ],
+                            message: [
+                                ['color', '#eee'],
+                                ['font-size', '18px']
+                            ],
+                            bold: [
+                                ['font-weight', 'bold'],
+                            ],
+                            actionButton: [
+                                ['color', 'white'],
+                            ],
+                        }
+                    })
+                }
             }
         }
     };
