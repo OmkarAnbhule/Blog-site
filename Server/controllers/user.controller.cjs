@@ -1,6 +1,7 @@
 const User = require('../models/user.model.cjs')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const Verifier = require('email-verifier')
 const OTP = require('../models/otp.model.cjs');
 const otpGenerator = require('otp-generator');
 const { sendVerificationEmail } = require('../utils/otputils.cjs')
@@ -83,37 +84,55 @@ exports.verfiyUser = async (req, resp) => {
 
 exports.sendOtp = async (req, resp) => {
     try {
-        const { email } = req.body
-        let otp = otpGenerator.generate(6, {
-            upperCaseAlphabets: true,
-            lowerCaseAlphabets: true,
-            specialChars: false,
+        const { email } = req.body;
+        let verifier = new Verifier(process.env.whoisapi_id, process.env.whoisapi_pass, {
+            checkCatchAll: false,
+            checkDisposable: false,
+            checkFree: false,
+            validateDNS: false,
+            validateSMTP: false
         });
-        let result = await OTP.findOne({ otp: otp });
-        const old = await OTP.findOne({ email: email })
-        console.log(old);
-        if (old && old.count >= 3) {
-            resp.status(400).send({ success: false, message: 'server busy' })
-        }
-        while (result) {
-            otp = otpGenerator.generate(6, {
+        let verify = true
+        const verifyPromise = new Promise((resolve, reject) => {
+            verifier.verify(email, (err, data) => {
+                if (err) {
+                    verify = false;
+                    resolve(verify);
+                }
+            });
+        });
+        await verifyPromise
+        if (verify == true) {
+            let otp = otpGenerator.generate(6, {
                 upperCaseAlphabets: true,
                 lowerCaseAlphabets: true,
                 specialChars: false,
             });
-            result = await OTP.findOne({ otp: otp });
-        }
-        const otpBody = await OTP.create({ email, otp });
-        if (otpBody) {
-            const response = await sendVerificationEmail(email, otp);
-            if (response)
+            let result = await OTP.findOne({ otp: otp });
+            const old = await OTP.findOne({ email: email })
+            if (old && old.count >= 3) {
+                resp.status(400).send({ success: false, message: 'server busy' })
+            }
+            while (result) {
+                otp = otpGenerator.generate(6, {
+                    upperCaseAlphabets: true,
+                    lowerCaseAlphabets: true,
+                    specialChars: false,
+                });
+                result = await OTP.findOne({ otp: otp });
+            }
+            const otpBody = await OTP.create({ email, otp });
+            if (otpBody) {
+                await sendVerificationEmail(email, otp);
                 resp.status(201).send({ success: true, message: 'otp sent successfully' });
-            else
-                resp.status(400).send({ success: false, message: 'otp failed to send' });
+            }
+        }
+        else {
+            resp.status(400).send({ success: false, message: 'otp failed to send' });
         }
     }
     catch (e) {
-        resp.status(500).send({ success: false, message: 'internal server error' });
+        resp.status(400).send({ success: true, message: 'otp failed to send' });
     }
 }
 

@@ -12,7 +12,7 @@ app.use(fileUpload({
     tempFileDir: "/tmp/"
 }));
 
-const allowedOrigins = ['https://blog-site-aig87qdg4-omkars-projects-b1d68007.vercel.app', 'https://blog-backend-omega-jet.vercel.app'];
+const allowedOrigins = ['https://blog-site-chi-pearl.vercel.app', 'https://blog-backend-omega-jet.vercel.app','http://localhost:5173'];
 
 app.use(cors({
     origin: function(origin, callback) {

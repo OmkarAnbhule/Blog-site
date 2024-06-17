@@ -151,7 +151,7 @@ const AuthForm = ({ login }) => {
                     }
                     else {
                         if (res.message == 'otp failed to send') {
-                            new Snackbar(`<i class="bi bi-exclamation-circle-fill"></i>&nbsp;&nbsp;&nbsp;Email Address not found`, {
+                            new Snackbar(`<i class="bi bi-exclamation-circle-fill"></i>&nbsp;&nbsp;&nbsp;Email Address not valid`, {
                                 position: 'top-center',
                                 style: {
                                     container: [
@@ -255,58 +255,59 @@ const AuthForm = ({ login }) => {
                         });
 
                     }
+                    else {
+                        if (res.message == 'otp failed to send') {
+                            new Snackbar(`<i class="bi bi-exclamation-circle-fill"></i>&nbsp;&nbsp;&nbsp;Email Address not valid`, {
+                                position: 'top-center',
+                                style: {
+                                    container: [
+                                        ['background', 'rgb(246, 58, 93)'],
+                                        ['border-radius', '5px'],
+                                        ['height', '50px'],
+                                        ['padding', '10px'],
+                                        ['border-radius', '20px']
+                                    ],
+                                    message: [
+                                        ['color', '#eee'],
+                                        ['font-size', '18px']
+                                    ],
+                                    bold: [
+                                        ['font-weight', 'bold'],
+                                    ],
+                                    actionButton: [
+                                        ['color', 'white'],
+                                    ],
+                                }
+                            })
+                        }
+                        else {
+                            new Snackbar(`<i class="bi bi-exclamation-circle-fill"></i>&nbsp;&nbsp;&nbsp;Server Error`, {
+                                position: 'top-center',
+                                style: {
+                                    container: [
+                                        ['background', 'rgb(246, 58, 93)'],
+                                        ['border-radius', '5px'],
+                                        ['height', '50px'],
+                                        ['padding', '10px'],
+                                        ['border-radius', '20px']
+                                    ],
+                                    message: [
+                                        ['color', '#eee'],
+                                        ['font-size', '18px']
+                                    ],
+                                    bold: [
+                                        ['font-weight', 'bold'],
+                                    ],
+                                    actionButton: [
+                                        ['color', 'white'],
+                                    ],
+                                }
+                            })
+                        }
+                    }
                 })
             }
-            else {
-                if (res.message == 'otp failed to send') {
-                    new Snackbar(`<i class="bi bi-exclamation-circle-fill"></i>&nbsp;&nbsp;&nbsp;Email Address not found`, {
-                        position: 'top-center',
-                        style: {
-                            container: [
-                                ['background', 'rgb(246, 58, 93)'],
-                                ['border-radius', '5px'],
-                                ['height', '50px'],
-                                ['padding', '10px'],
-                                ['border-radius', '20px']
-                            ],
-                            message: [
-                                ['color', '#eee'],
-                                ['font-size', '18px']
-                            ],
-                            bold: [
-                                ['font-weight', 'bold'],
-                            ],
-                            actionButton: [
-                                ['color', 'white'],
-                            ],
-                        }
-                    })
-                }
-                else {
-                    new Snackbar(`<i class="bi bi-exclamation-circle-fill"></i>&nbsp;&nbsp;&nbsp;Server Error`, {
-                        position: 'top-center',
-                        style: {
-                            container: [
-                                ['background', 'rgb(246, 58, 93)'],
-                                ['border-radius', '5px'],
-                                ['height', '50px'],
-                                ['padding', '10px'],
-                                ['border-radius', '20px']
-                            ],
-                            message: [
-                                ['color', '#eee'],
-                                ['font-size', '18px']
-                            ],
-                            bold: [
-                                ['font-weight', 'bold'],
-                            ],
-                            actionButton: [
-                                ['color', 'white'],
-                            ],
-                        }
-                    })
-                }
-            }
+
         }
     };
 
