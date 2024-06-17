@@ -8,7 +8,7 @@ export default function Comment({ comments, index, level }) {
     const api = import.meta.env.VITE_API_URL;
     const margin = level * 20
     const [isReplyInputShow, setIsReplyInputShow] = useState(false);
-    const token = jwtDecode(localStorage.getItem('token'))
+    const token = jwtDecode(localStorage.getItem('token') || '')
     const [reply, setReply] = useState('');
     const replyInputRef = useRef(null);
     const [isShowReply, setIsShowReply] = useState(false);

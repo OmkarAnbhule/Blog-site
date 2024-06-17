@@ -1,11 +1,12 @@
 import { jwtDecode } from 'jwt-decode';
 import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import BlogList from './BlogList';
 import { Buffer } from 'buffer'
 
 
 export default function Profile() {
+    const navigate = useNavigate()
     const api = import.meta.env.VITE_API_URL;
     const token = jwtDecode(localStorage.getItem('token')) || null
     const [user, setUser] = useState()
@@ -30,7 +31,7 @@ export default function Profile() {
         result = await result.json()
         if(result.success){
             localStorage.clear()
-            window.location.href = '/signup'
+            navigate('/')
         }
     }
 

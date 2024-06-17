@@ -2,8 +2,10 @@ import React, { useEffect, useRef, useState } from 'react'
 import Sidebar from '../Sidebar/Sidebar'
 import './style.css'
 import Card from './Card'
+import { useNavigate } from 'react-router-dom'
 
 export default function Home({ isHome }) {
+    const navigate = useNavigate()
     const api = import.meta.env.VITE_API_URL
     const [blogs, setBlogs] = useState([])
     const divRef = useRef(null)
@@ -29,6 +31,9 @@ export default function Home({ isHome }) {
                     console.log(blogs[0])
                 }
             })
+        }
+        else{
+            navigate('/signup')
         }
         if (divRef.current) {
             divRef.current.scrollTop = -99999999;

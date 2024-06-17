@@ -2,7 +2,7 @@ exports.mongodb = () => {
     const mongoose = require('mongoose')
 
     try {
-        mongoose.connect(process.env.DB_URL).then(()=>{
+        mongoose.connect(process.env.MONGODB_URI).then(() => {
             console.log('connection established to db')
         })
     }

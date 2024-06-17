@@ -9,6 +9,7 @@ export default function Navbar() {
     const api = import.meta.env.VITE_API_URL;
     const navigate = useNavigate()
     const location = useLocation()
+    let token = null
     const [isOpen, setIsOpen] = useState(false);
     const [user, setUser] = useState(null)
     const handleNavigate = (path) => {
@@ -16,7 +17,7 @@ export default function Navbar() {
     }
 
     const getUser = async () => {
-        let result = await fetch(`${api}user/${jwtDecode(localStorage.getItem('token')).id}`, {
+        let result = await fetch(`${api}user/${token.id}`, {
             method: 'GET',
             credentials: 'include',
             headers: {
@@ -40,6 +41,7 @@ export default function Navbar() {
                     }
                 })
             }, 1000)
+            token = jwtDecode(localStorage.getItem('token'))
         }
     }, [localStorage.getItem('token')])
 
@@ -112,7 +114,7 @@ export default function Navbar() {
                 <div className='profile-btn'>
                     {
                         localStorage.getItem('isLogin') && user ?
-                            <Link to={`/profile/${encodeObjectId(jwtDecode(localStorage.getItem('token')).id)}`}>
+                            <Link to={`/profile/${encodeObjectId(token.id)}`}>
                                 <div className='profile'>
                                     <img width={50} height={50} src={user.avatar}></img>
                                     <p>{user.name}</p>
