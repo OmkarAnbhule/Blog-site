@@ -12,13 +12,19 @@ app.use(fileUpload({
     tempFileDir: "/tmp/"
 }));
 
-const corsOptions = {
-    origin: 'http://localhost:5173',
+const allowedOrigins = ['https://blog-site-aig87qdg4-omkars-projects-b1d68007.vercel.app', 'https://blog-backend-omega-jet.vercel.app'];
+
+app.use(cors({
+    origin: function(origin, callback) {
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.indexOf(origin) === -1) {
+            const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+            return callback(new Error(msg), false);
+        }
+        return callback(null, true);
+    },
     credentials: true
-};
-
-app.use(cors(corsOptions));
-
+}));
 //*****import routes********
 const userRoutes = require('./routes/user.route.cjs')
 const blogRoutes = require('./routes/blog.route.cjs')

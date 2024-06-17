@@ -3,6 +3,7 @@ import Editor from './Editor';
 import './style.css';
 import Snackbar from 'awesome-snackbar'
 import { useNavigate } from 'react-router-dom';
+import DOMPurify from 'dompurify';
 
 
 const CreatePage = () => {
@@ -83,9 +84,6 @@ const CreatePage = () => {
       setThumbnail(file);
     }
   };
-  useEffect(() => {
-    console.log(content)
-  }, [content])
 
   return (
     <div className='create-root'>
@@ -138,7 +136,7 @@ const CreatePage = () => {
 
         <Editor
           value={content}
-          onChange={(newContent) => setContent(newContent)}
+          onChange={(newContent) => { const sanitizedValue = DOMPurify.sanitize(newContent); setContent(sanitizedValue) }}
         />
         {/* <div className='ql-editor' dangerouslySetInnerHTML={{__html:content}}></div> */}
 
