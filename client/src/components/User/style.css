@@ -311,7 +311,7 @@
                         height: 80px;
                         border: 2px solid;
                         border-radius: 10px;
-                        font-size: 40px;
+                        font-size: 25px;
                         text-align: center;
 
                         @media (max-width:768px) {

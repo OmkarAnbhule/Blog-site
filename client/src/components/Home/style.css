@@ -36,11 +36,15 @@
 
     .main-root {
         display: flex;
-        width: 100vw;
         height: auto;
         padding: 10px;
         flex-direction: column;
         margin-bottom: 70px;
+
+        @media (max-width:768px) {
+            width: 100% !important;
+            padding: 0;
+        }
 
         h1 {
             font-size: 25px;
@@ -73,6 +77,11 @@
             row-gap: 30px;
             padding: 20px;
 
+            @media (max-width:425px) {
+                padding: 0;
+            }
+            
+
             @media (max-width:768px) {
                 justify-content: center;
             }
@@ -83,7 +92,7 @@
                 perspective: 1000px;
 
                 @media (max-width:768px) {
-                    width: 400px;
+                    width: 90%;
                     height: 300px;
                 }
 
@@ -180,22 +189,27 @@
 
                             p {
                                 font-size: 12px;
-                                display: flex;
 
                                 &:nth-child(1) {
                                     font-weight: 500;
                                     margin: 0;
                                     padding: 0;
+                                    overflow: hidden;
+                                    text-overflow:ellipsis;
+                                    white-space: nowrap;
+                                    width: 80px;
                                 }
 
                                 &:nth-child(2) {
                                     font-size: x-small;
                                     column-gap: 5px;
+                                    display: flex;
                                 }
 
                                 &:nth-child(3) {
                                     font-size: x-small;
                                     column-gap: 5px;
+                                    display: flex;
                                 }
                             }
                         }

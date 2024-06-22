@@ -142,7 +142,6 @@ export default function Sidebar() {
                                     <img src={item.thumbnail} alt={item.title} />
                                     <div className='title'>
                                         <p>{item.title}</p>
-                                        <p>Title of the blog</p>
                                     </div>
                                 </div>
                             ))

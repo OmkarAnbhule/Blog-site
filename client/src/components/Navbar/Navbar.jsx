@@ -39,7 +39,7 @@ export default function Navbar() {
                             setUser(res.data)
                         }
                     })
-            }, 2000)
+            }, 1000)
         }
     }, [])
     const encodeObjectId = (objectId) => {

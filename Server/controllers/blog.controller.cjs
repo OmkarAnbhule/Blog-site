@@ -1,13 +1,18 @@
 const mongoose = require('mongoose')
+const DOMPurify = require('dompurify');
+const { JSDOM } = require('jsdom');
 const Blog = require('../models/blog.model.cjs')
 const Comment = require('../models/comment.model.cjs')
 const { uploadFileOnCloudinary } = require('../utils/cloudinary.utils.cjs')
 const { generateOrQuery, traverseObjects } = require('../utils/comment.utils.cjs')
 
+
 exports.createBlog = async (req, resp) => {
     try {
         const { title, category, desc } = req.body
         const thumbnail = req.files.thumbnail
+        const window = new JSDOM('').window;
+        const DOMPurifyInstance = DOMPurify(window);
         const content = DOMPurifyInstance.sanitize(req.body.content);
         if (title || category || content || thumbnail || desc) {
             const upload = await uploadFileOnCloudinary(thumbnail, 'blogThumbnails')
@@ -21,6 +26,7 @@ exports.createBlog = async (req, resp) => {
         }
     }
     catch (e) {
+        console.log(e)
         return resp.status(500).send({ success: false, message: 'internal server error' });
     }
 }
