@@ -1,32 +1,29 @@
-# UrbanCart E-commerce Website
+# InkWave Blogging Website
 
-UrbanCart is an e-commerce platform designed to provide a seamless shopping experience for users looking to purchase a variety of products online. This README.md file provides an overview of the project, its features, technologies used, installation instructions, API endpoints (if applicable), directory structure, and other relevant information.
+This blogging platform was created as part of my CodSoft internship. It is built using the MERN stack (MongoDB, Express.js, React, Node.js) and includes several key features to enhance the user experience.
 
 ## Features
 
-- **Product Catalog**: Browse a wide range of products categorized by type, brand, or other criteria.
-- **User Authentication**: Register, log in, and manage user accounts.
-- **Shopping Cart**: Add products to a cart for purchasing.
-- **Checkout Process**: Secure checkout flow for completing purchases.
-- **Order Management**: View order history and manage orders.
-- **Search and Filters**: Search products and apply filters to find specific items.
-- **Admin Dashboard**: Admin interface for managing products, orders, and users (if applicable).
+- **User Authentication: Secure registration and login functionality.
+- **Blog Post Creation: Users can easily create and publish blog posts.
+- **Commenting System: Users can engage with posts through a robust commenting system.
+- **Search Functionality: Built-in search feature to find specific posts.
+- **Mobile-Friendly Design: Fully responsive and optimized for mobile devices.
 
 ## Technologies Used
 
-- **Frontend**: React with Redux (State Management)
+- **Frontend**: React Vite (State Management)
 - **Backend**: Node.js with Express
 - **Database**: MongoDB (MongoDB Atlas for cloud hosting)
-- **Payment Gateway**: Stripe or other payment processing integration
 - **Authentication**: JWT (JSON Web Tokens)
-- **UI Framework**: Bootstrap or Tailwind CSS
+- **UI Framework: Tailwind CSS
 
 ## Installation
 
 1. **Clone Repository**
 
    ```bash
-   git clone https://github.com/OmkarAnbhule/CODSOFT.git
+   git clone https://github.com/OmkarAnbhule/Blog-site.git
    
 2. **Setup Frontend**
    ```bash
@@ -73,3 +70,4 @@ Replace your_mongodb_uri, your_jwt_secret, your_cloudinary_* with your actual Mo
 ## Author
  - Omkar Suresh Anbhule
  - GitHub: https://github.com/OmkarAnbhule
+ - Live Demo: https://blog-site-chi-pearl.vercel.app/
